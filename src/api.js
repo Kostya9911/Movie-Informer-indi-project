@@ -1,4 +1,5 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const API_KEY = '597f2644d0be3c5b2ab09a53bdbbc182';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -36,4 +37,17 @@ export const fetchSearchMovies = async query => {
     `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&include_adult=false&language=en-US&page=1`
   );
   return response.data.results;
+};
+
+fetchSearchMovies.propTypes = {
+  query: PropTypes.string,
+};
+fetchReviews.propTypes = {
+  id: PropTypes.string,
+};
+fetchCast.propTypes = {
+  id: PropTypes.string,
+};
+fetchMovieDetails.propTypes = {
+  id: PropTypes.string,
 };

@@ -1,6 +1,14 @@
-import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
-import { useState, useEffect, Suspense } from 'react';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import { fetchMovieDetails } from 'api';
+
+import {
+  Link,
+  Wrapper,
+  WrapperIformation,
+  Btn,
+  LinkBack,
+} from './MovieDetails.styled';
 
 const POSTER_PATH = 'https://image.tmdb.org/t/p/w500';
 
@@ -11,7 +19,9 @@ const MovieDetails = () => {
   const [status, setStatus] = useState('start');
 
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+
+  // const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = useRef(location.state?.from ?? '/');
 
   const { id } = useParams();
 
@@ -32,12 +42,12 @@ const MovieDetails = () => {
     getMoviesDetails();
   }, [id]);
 
-  // console.log(movieDetails);
   const {
     poster_path = 'https://banffventureforum.com/wp-content/uploads/2019/08/no-photo-icon-22.png',
     vote_average,
     title,
     overview,
+    release_date,
   } = movieDetails;
 
   if (status === 'pending') {
@@ -51,24 +61,29 @@ const MovieDetails = () => {
   if (status === 'resolved') {
     return (
       <div>
-        <Link to={backLinkHref}>Back to products</Link>
-        <div>
+        <LinkBack to={backLinkHref.current}>
+          <Btn type="button">Back</Btn>
+        </LinkBack>
+        {/* <Link to={backLinkHref}>Back</Link> */}
+        <Wrapper>
           {poster_path ? (
             <img
               src={`${POSTER_PATH}${poster_path}`}
               alt="movies poster"
-              height="200px"
+              height="300px"
             />
           ) : (
             <img
               src="https://banffventureforum.com/wp-content/uploads/2019/08/no-photo-icon-22.png"
               alt="movies poster"
-              height="200px"
+              height="300px"
             />
           )}
 
           <div>
-            <h3>{title}</h3>
+            <h2>
+              {title} ({release_date.slice(0, 4)})
+            </h2>
             <p>User score: {Math.round(vote_average * 10)}%</p>
             <h4>Overview</h4>
             <p>{overview}</p>
@@ -76,22 +91,17 @@ const MovieDetails = () => {
             <p>
               {[...genres].map(genre => {
                 return `${genre.name} `;
-                // key={genre.id}>{genre.name}
               })}
             </p>
           </div>
-        </div>
-        <div>
+        </Wrapper>
+        <WrapperIformation>
           <p>Additional information</p>
-          <ul>
-            <li>
-              <Link to="cast">Cast</Link>
-            </li>
-            <li>
-              <Link to="reviews">Reviews</Link>
-            </li>
-          </ul>
-        </div>
+
+          <Link to="cast">Cast</Link>
+
+          <Link to="reviews">Reviews</Link>
+        </WrapperIformation>
         <Suspense fallback={<div>Loading page...</div>}>
           <Outlet />
         </Suspense>

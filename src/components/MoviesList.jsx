@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 
 export const MoviesList = ({ linkToPage, movies }) => {
@@ -13,4 +14,9 @@ export const MoviesList = ({ linkToPage, movies }) => {
       ))}
     </ul>
   );
+};
+
+MoviesList.propTypes = {
+  linkToPage: PropTypes.string,
+  movies: PropTypes.array,
 };
