@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { MoviesList } from '../components/MoviesList';
 import { SearchBox } from 'components/SearchBox';
@@ -7,19 +8,19 @@ import { fetchSearchMovies } from '../api';
 
 const Movies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
-  const [query, setQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const movieName = searchParams.get('query') ?? '';
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    // console.log(evt.target.elements.query.value.trim());
-    setQuery(evt.target.elements.query.value.trim());
+    setSearchParams({ query: evt.target.elements.query.value.trim() });
     evt.target.reset();
   };
 
   useEffect(() => {
     async function getSearchMovies() {
       try {
-        const response = await fetchSearchMovies(query);
+        const response = await fetchSearchMovies(movieName);
         setSearchedMovies(response);
       } catch (error) {
         console.log(error);
@@ -30,7 +31,7 @@ const Movies = () => {
       // finally {        setLoading(false);      }
     }
     getSearchMovies();
-  }, [query]);
+  }, [movieName]);
 
   return (
     <div>

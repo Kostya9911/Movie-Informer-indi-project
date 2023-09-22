@@ -1,4 +1,4 @@
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { fetchMovieDetails } from 'api';
 
@@ -10,7 +10,8 @@ const MovieDetails = () => {
   const [genres, setGenres] = useState([]);
   const [status, setStatus] = useState('start');
 
-  // const location = useLocation();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   const { id } = useParams();
 
@@ -50,6 +51,7 @@ const MovieDetails = () => {
   if (status === 'resolved') {
     return (
       <div>
+        <Link to={backLinkHref}>Back to products</Link>
         <div>
           {poster_path ? (
             <img
