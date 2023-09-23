@@ -6,7 +6,7 @@ export const Link = styled(NavLink)`
   padding-left: 20px;
   margin-bottom: 10px;
   text-decoration: none;
-  color: blue;
+  color: tomato;
   font-weight: 500;
 
   &.active {
@@ -33,13 +33,18 @@ export const WrapperIformation = styled.div`
   }
 `;
 
-export const Btn = styled.button`
-  color: black;
-  background-color: tomato;
-  padding: 3px 8px 3px 8px;
-  border-radius: 100px 1px 1px 100px;
-  font: inherit;
-`;
 export const LinkBack = styled(NavLink)`
-  display: block;
+  align-items: bas;
+  font-size: 15px;
+  padding: 3px 20px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: tomato;
+
+  font-weight: 500;
+
+  > b {
+    display: flex;
+    font-size: 23px;
+  }
 `;

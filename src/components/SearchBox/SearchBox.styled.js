@@ -12,12 +12,28 @@ export const Input = styled.input`
   padding: 5px 32px 5px 8px;
   border-radius: 4px;
   font: inherit;
+  border: 1px solid lightcoral;
+  margin-right: 2px;
+  transition: box-shadow 0.3s ease;
+  outline: none;
+
+  &:hover {
+    box-shadow: 1px 0px 8px tomato;
+  }
 `;
 
 export const Btn = styled.button`
-  color: black;
+  color: white;
+  border: none;
   background-color: tomato;
-  padding: 5px 8px 5px 8px;
+  padding: 7px 8px 7px 8px;
   border-radius: 4px;
   font: inherit;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  box-shadow: tomato;
+
+  &:hover {
+    color: black;
+  }
 `;

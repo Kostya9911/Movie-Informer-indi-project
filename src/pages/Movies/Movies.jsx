@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { MoviesList } from '../components/MoviesList';
-import { SearchBox } from 'components/SearchBox';
+import { MoviesList } from '../../components/MoviesList/MoviesList';
+import { SearchBox } from 'components/SearchBox/SearchBox';
 
-import { fetchSearchMovies } from '../api';
+import { fetchSearchMovies } from '../../services/api';
 
 const Movies = () => {
   const [error, setError] = useState(null);
@@ -24,6 +24,7 @@ const Movies = () => {
   };
 
   useEffect(() => {
+    if (!movieName) return;
     setStatus('pending');
     async function getSearchMovies() {
       try {
@@ -39,27 +40,18 @@ const Movies = () => {
     getSearchMovies();
   }, [movieName]);
 
-  if (status === 'pending') {
-    return <h2>Loading...</h2>;
-  }
-
-  if (status === 'rejected') {
-    return <h2>Sorry! Something went wrong: {error}</h2>;
-  }
-  if (status === 'resolved') {
-    return (
-      <div>
-        <h2>Movies</h2>
-        <SearchBox onSubmit={handleSubmit} />
-        <MoviesList linkToPage={''} movies={searchedMovies} />
-      </div>
-    );
-  }
   return (
-    <div>
+    <>
+      {status === 'pending' && <h2>Loading...</h2>}
+      {status === 'rejected' && <h2>Something went wrong: {error}</h2>}
       <h2>Movies</h2>
       <SearchBox onSubmit={handleSubmit} />
-    </div>
+      {status === 'resolved' && (
+        <div>
+          <MoviesList movies={searchedMovies} />
+        </div>
+      )}
+    </>
   );
 };
 

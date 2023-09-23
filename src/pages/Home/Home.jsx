@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { MoviesList } from '../components/MoviesList';
+import { MoviesList } from '../../components/MoviesList/MoviesList';
 
-import { fetchTopMovies } from '../api';
+import { fetchTopMovies } from '../../services/api';
 
 const Home = () => {
   const [error, setError] = useState(null);
@@ -25,21 +25,18 @@ const Home = () => {
     getTopMovies();
   }, []);
 
-  if (status === 'pending') {
-    return <h2>Loading...</h2>;
-  }
-
-  if (status === 'rejected') {
-    return <h2>Sorry! Something went wrong: {error}</h2>;
-  }
-  if (status === 'resolved') {
-    return (
-      <div>
-        <h2>Trending Today</h2>
-        <MoviesList linkToPage={'movies/'} movies={topMovies} />
-      </div>
-    );
-  }
+  return (
+    <>
+      {status === 'pending' && <h2>Loading...</h2>}
+      {status === 'rejected' && <h2>Sorry! Something went wrong: {error}</h2>}
+      {status === 'resolved' && (
+        <>
+          <h2>Trending Today</h2>
+          <MoviesList movies={topMovies} />
+        </>
+      )}
+    </>
+  );
 };
 
 export default Home;

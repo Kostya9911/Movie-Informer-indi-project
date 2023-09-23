@@ -17,3 +17,14 @@ code {
 p {
   margin: 0;
 }
+a {
+  font-size: 18px;
+  color: tomato;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+a:hover {
+  color: black;
+  font-weight: 700;
+}

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import { fetchReviews } from 'api';
+import { fetchReviews } from 'services/api';
 
 const Reviews = () => {
   const [error, setError] = useState(null);
@@ -10,6 +10,7 @@ const Reviews = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    if (!id) return;
     setStatus('pending');
     async function getReviews() {
       try {
@@ -24,28 +25,27 @@ const Reviews = () => {
     }
     getReviews();
   }, [id]);
-  if (status === 'pending') {
-    return <h2>Loading...</h2>;
-  }
 
-  if (status === 'rejected') {
-    return <h2>Sorry! Something went wrong: {error}</h2>;
-  }
-  if (status === 'resolved') {
-    if (reviews.length === 0) {
-      return <div>Don't have any rewiew</div>;
-    }
-    return (
-      <ul>
-        {reviews.map(review => (
-          <li key={review.id}>
-            <h4>{review.author}</h4>
-            <p> {review.content}</p>
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  return (
+    <>
+      {status === 'pending' && <h2>Loading...</h2>}
+      {status === 'rejected' && <h2>Sorry! Something went wrong: {error}</h2>}
+      {status === 'resolved' && reviews.length === 0 && (
+        <p>Don't have any rewiew</p>
+      )}
+
+      {status === 'resolved' && (
+        <ul>
+          {reviews.map(review => (
+            <li key={review.id}>
+              <h4>{review.author}</h4>
+              <p> {review.content}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
 };
 
 export default Reviews;
