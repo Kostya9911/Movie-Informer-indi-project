@@ -50,9 +50,7 @@ const Cast = () => {
               <p>
                 <b>{original_name}</b>
               </p>
-              <p>
-                <b>Character:</b> {character}
-              </p>
+              <p>{character}</p>
             </li>
           ))}
         </List>
