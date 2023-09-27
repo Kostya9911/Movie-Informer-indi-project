@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Movie-Informer-indi-project/static/css/main.3e8b4e5f.css",
-    "main.js": "/Movie-Informer-indi-project/static/js/main.a83da38e.js",
+    "main.js": "/Movie-Informer-indi-project/static/js/main.0f2abac4.js",
     "static/js/544.08913b62.chunk.js": "/Movie-Informer-indi-project/static/js/544.08913b62.chunk.js",
     "static/js/141.0130ce27.chunk.js": "/Movie-Informer-indi-project/static/js/141.0130ce27.chunk.js",
     "static/js/33.3baf0ec2.chunk.js": "/Movie-Informer-indi-project/static/js/33.3baf0ec2.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/478.ec32f28c.chunk.js": "/Movie-Informer-indi-project/static/js/478.ec32f28c.chunk.js",
     "index.html": "/Movie-Informer-indi-project/index.html",
     "main.3e8b4e5f.css.map": "/Movie-Informer-indi-project/static/css/main.3e8b4e5f.css.map",
-    "main.a83da38e.js.map": "/Movie-Informer-indi-project/static/js/main.a83da38e.js.map",
+    "main.0f2abac4.js.map": "/Movie-Informer-indi-project/static/js/main.0f2abac4.js.map",
     "544.08913b62.chunk.js.map": "/Movie-Informer-indi-project/static/js/544.08913b62.chunk.js.map",
     "141.0130ce27.chunk.js.map": "/Movie-Informer-indi-project/static/js/141.0130ce27.chunk.js.map",
     "33.3baf0ec2.chunk.js.map": "/Movie-Informer-indi-project/static/js/33.3baf0ec2.chunk.js.map",
@@ -20,6 +20,6 @@
   },
   "entrypoints": [
     "static/css/main.3e8b4e5f.css",
-    "static/js/main.a83da38e.js"
+    "static/js/main.0f2abac4.js"
   ]
 }
