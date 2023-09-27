@@ -24,7 +24,7 @@ const Home = () => {
     }
     getTopMovies();
   }, []);
-
+  console.log(7);
   return (
     <>
       {status === 'pending' && <h2>Loading...</h2>}
